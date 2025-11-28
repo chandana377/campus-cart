@@ -1,113 +1,38 @@
-<!-- profile.html -->
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Profile — CAMPUS CART</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Profile | CampusCart</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <div class="logo-section"><div class="logo">🛒</div>CAMPUS CART</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="products.html">Buy</a>
-      <a href="sell.html">Sell</a>
-      <a href="profile.html">Profile</a>
-      <a href="login.html">Login</a>
-    </nav>
-  </header>
 
-  <main class="container">
-    <div id="profileArea" class="form-card" style="text-align:left">
-      <h2>Your Profile</h2>
-      <div id="userInfo"></div>
-      <div style="margin-top:18px">
-        <button id="logoutBtn" class="btn" style="background:#ff6b6b">Logout</button>
-      </div>
-    </div>
+<div class="navbar">
+  <h1><img src="assets/logo.png"> CampusCart</h1>
+  <a href="products.html">Home</a>
+</div>
 
-    <div class="form-card">
-      <h3>Your Listings</h3>
-      <div id="myListings">
-        <p class="small">Loading your listings...</p>
-      </div>
-    </div>
-  </main>
+<div class="container">
+  <h2>Your Profile</h2>
+  <p id="userEmail"></p>
+  <button class="btn" id="logoutBtn">Logout</button>
+</div>
 
-  <script type="module">
-    import { onUserStateChanged, logout } from "./script/auth.js";
-    import { fetchMyProducts, deleteProduct } from "./script/sell.js";
+<script type="module">
+import { auth } from "./script/firebase.js";
+import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 
-    const userInfo = document.getElementById("userInfo");
-    const myListings = document.getElementById("myListings");
-    const logoutBtn = document.getElementById("logoutBtn");
+onAuthStateChanged(auth, (user)=>{
+  if(user){
+    userEmail.textContent = "Logged in as: " + user.email;
+  } else {
+    location.href = "login.html";
+  }
+});
 
-    let currentUser = null;
+logoutBtn.addEventListener("click", ()=>{
+  signOut(auth);
+});
+</script>
 
-    onUserStateChanged(async (u)=>{
-      currentUser = u;
-      if(!u){
-        // not logged in
-        userInfo.innerHTML = `<p class="small">You are not signed in. <a href="login.html">Sign in</a></p>`;
-        myListings.innerHTML = `<p class="small">Please sign in to manage your listings.</p>`;
-        return;
-      }
-
-      userInfo.innerHTML = `<p><strong>Email:</strong> ${escapeHtml(u.email)}</p><p class="small">UID: ${u.uid}</p>`;
-      const items = await fetchMyProducts(u.uid);
-      renderListings(items);
-    });
-
-    logoutBtn.addEventListener("click", async ()=>{
-      await logout();
-      window.location.href = "index.html";
-    });
-
-    function renderListings(items){
-      if(!items || items.length === 0){
-        myListings.innerHTML = `<p class="small">You have no listings. <a href="sell.html">Create one</a></p>`;
-        return;
-      }
-      myListings.innerHTML = "";
-      items.forEach(it => {
-        const el = document.createElement("div");
-        el.className = "list-row";
-        el.innerHTML = `
-          <div style="display:flex;gap:12px;align-items:center">
-            <img src="${it.image}" style="width:64px;height:64px;object-fit:cover;border-radius:8px">
-            <div>
-              <div style="font-weight:600">${escapeHtml(it.name)}</div>
-              <div class="small">$${it.price}</div>
-            </div>
-          </div>
-          <div>
-            <button class="delete-btn" data-id="${it.id}" data-path="${it.storagePath || ''}">Delete</button>
-          </div>
-        `;
-        myListings.appendChild(el);
-
-        el.querySelector(".delete-btn").addEventListener("click", async (e)=>{
-          const btn = e.target;
-          const id = btn.getAttribute("data-id");
-          const path = btn.getAttribute("data-path");
-          if(!confirm("Delete this listing?")) return;
-          try{
-            await deleteProduct(id, path);
-            btn.textContent = "Deleted";
-            btn.disabled = true;
-            // remove element
-            el.remove();
-          }catch(err){
-            alert("Delete failed: " + err.message);
-          }
-        });
-      });
-    }
-
-    function escapeHtml(s){ return (s+'').replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
-  </script>
 </body>
 </html>
