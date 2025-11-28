@@ -1,22 +1,43 @@
-<div id="productList" class="product-grid"></div>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products | CampusCart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="navbar">
+  <h1><img src="assets/logo.png"> CampusCart</h1>
+  <div>
+    <a href="sell.html">Sell</a>
+    <a href="profile.html">Profile</a>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Available Items</h2>
+  <div id="productList"></div>
+</div>
 
 <script type="module">
 import { db } from "./script/firebase.js";
 import { getDocs, collection } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 
-const container = document.getElementById("productList");
+const listing = document.getElementById("productList");
 
 const snap = await getDocs(collection(db, "products"));
-snap.forEach(doc => {
-   let item = doc.data();
+snap.forEach(d => {
+  let item = d.data();
 
-   container.innerHTML += `
-     <div class="card">
-        <img src="${item.image}">
-        <h3>${item.name}</h3>
-        <p>$${item.price}</p>
-        <button class="buy-btn">View</button>
-     </div>
-   `;
+  listing.innerHTML += `
+    <div class="card">
+      <img src="${item.image}">
+      <h3>${item.name}</h3>
+      <p>Price: $${item.price}</p>
+    </div>
+  `;
 });
 </script>
+
+</body>
+</html>
