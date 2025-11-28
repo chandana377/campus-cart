@@ -1,207 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CAMPUS CART – Student Marketplace</title>
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(to bottom right, #eef4ff, #d8e3ff);
-    }
-
-    /* HEADER */
-    header {
-      background-color: #1d3557;
-      color: white;
-      padding: 18px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    }
-
-    .logo-section {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.8rem;
-      font-weight: 600;
-    }
-
-    .logo {
-      font-size: 2.2rem;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 18px;
-      font-weight: 400;
-      transition: 0.3s;
-      padding: 6px 10px;
-      border-radius: 6px;
-    }
-
-    nav a:hover {
-      background: #457b9d;
-    }
-
-    /* HERO SECTION */
-    .hero {
-      text-align: center;
-      padding: 80px 20px;
-    }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      color: #1d3557;
-      font-weight: 600;
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      color: #333;
-      max-width: 600px;
-      margin: 10px auto 30px auto;
-    }
-
-    .cta-btn {
-      background-color: #1d3557;
-      padding: 14px 28px;
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      font-size: 1.2rem;
-      transition: 0.3s;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .cta-btn:hover {
-      background-color: #457b9d;
-    }
-
-    /* PRODUCT SECTION */
-    .products-title {
-      text-align: center;
-      margin-top: 50px;
-      font-size: 2rem;
-      color: #1d3557;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      padding: 40px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      padding: 15px;
-      text-align: center;
-      transition: transform 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-      height: 160px;
-      object-fit: cover;
-    }
-
-    .card h3 {
-      font-size: 1.2rem;
-      margin: 10px 0;
-      color: #1d3557;
-    }
-
-    .card p {
-      color: #333;
-      font-size: 1rem;
-      margin: 5px 0 10px;
-    }
-
-    .buy-btn {
-      background: #457b9d;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-
-    .buy-btn:hover {
-      background: #1d3557;
-    }
-
-  </style>
+  <title>CampusCart</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-  <!-- HEADER SECTION -->
-  <header>
-    <div class="logo-section">
-      <div class="logo">🛒</div>
-      CAMPUS CART
-    </div>
+<div class="navbar">
+  <h1><img src="assets/logo.png"> CampusCart</h1>
+  <div>
+    <a href="login.html">Login</a>
+    <a href="products.html">Browse</a>
+    <a href="sell.html">Sell</a>
+  </div>
+</div>
 
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="products.html">Buy</a>
-      <a href="sell.html">Sell</a>
-      <a href="profile.html">Profile</a>
-      <a href="login.html">Login</a>
-    </nav>
-  </header>
-
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <h1>Buy • Sell • Exchange · Across Campus</h1>
-    <p>
-      CampusCart is a safe, student-friendly marketplace exclusively for university students. 
-      Get the best deals on textbooks, electronics, dorm essentials, and more.
-    </p>
-    <a class="cta-btn" href="products.html">Explore Products</a>
-  </section>
-
-  <!-- PRODUCT PREVIEW SECTION -->
-  <h2 class="products-title">Popular Listings</h2>
-
-  <section class="product-grid">
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" />
-      <h3>Used Textbook</h3>
-      <p>$15</p>
-      <a class="buy-btn" href="#">View</a>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" />
-      <h3>Scientific Calculator</h3>
-      <p>$10</p>
-      <a class="buy-btn" href="#">View</a>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e" />
-      <h3>Desk Lamp</h3>
-      <p>$8</p>
-      <a class="buy-btn" href="#">View</a>
-    </div>
-  </section>
+<div class="container">
+  <h2>Welcome to CampusCart 🚀</h2>
+  <p>A marketplace for students to buy & sell items on campus.</p>
+</div>
 
 </body>
 </html>
