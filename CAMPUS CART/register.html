@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register | CampusCart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="navbar">
+  <h1><img src="assets/logo.png"> CampusCart</h1>
+</div>
+
+<div class="container">
+  <h2>Create Account</h2>
+  <form id="regForm">
+    <input id="email" type="email" placeholder="Email" required>
+    <input id="password" type="password" placeholder="Password" required>
+    <button class="btn" type="submit">Register</button>
+  </form>
+</div>
+
+<script type="module">
+import { auth } from "./script/firebase.js";
+import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+
+document.getElementById("regForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  let emailVal = email.value;
+  let passVal = password.value;
+
+  try {
+    await createUserWithEmailAndPassword(auth, emailVal, passVal);
+    alert("Account created!");
+    location.href = "login.html";
+  } catch(err) {
+    alert(err.message);
+  }
+});
+</script>
+
+</body>
+</html>
