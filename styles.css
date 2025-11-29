@@ -1,32 +1,64 @@
-body {
-  font-family: Arial, sans-serif;
-  padding: 0; margin: 0;
+/* styles.css - CampusCart theme */
+:root{
+  --primary:#1d3557;
+  --accent:#457b9d;
+  --muted:#eef4ff;
+  --card:#fff;
+  --radius:12px;
 }
 
-header {
-  background-color: #2a4d69;
-  color: white;
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(135deg,var(--muted), #d8e3ff 60%);
+  color:#222;
 }
 
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
+header{
+  background:var(--primary);
+  color:#fff;
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
+.header-left{display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:8px}
+.brand{font-weight:700;letter-spacing:1px}
+nav a{color:white;text-decoration:none;margin-left:14px;padding:6px 8px;border-radius:8px}
+nav a:hover{background:rgba(255,255,255,0.06)}
 
-.hero {
-  text-align: center;
-  padding: 60px;
-  background-color: #e7eff6;
-}
+.container{max-width:1100px;margin:20px auto;padding:0 18px}
 
-.btn {
-  padding: 10px 20px;
-  background-color: #4b86b4;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-}
+/* hero */
+.hero{padding:40px 0;text-align:center}
+.hero h1{font-size:2.2rem;color:var(--primary);margin:6px 0}
+.hero p{max-width:760px;margin:8px auto 18px;color:#333}
+
+/* buttons */
+.btn{display:inline-block;background:var(--primary);color:#fff;padding:10px 18px;border-radius:10px;text-decoration:none;font-weight:600}
+.btn.secondary{background:var(--accent)}
+
+/* grid */
+.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:18px}
+
+/* card */
+.card{background:var(--card);border-radius:var(--radius);box-shadow:0 6px 18px rgba(29,53,87,0.06);overflow:hidden;padding:12px;text-align:center}
+.card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+.card h3{margin:10px 0 6px;color:var(--primary)}
+.card p{margin:0 0 12px;font-weight:600;color:#111}
+
+/* forms */
+.form-card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 8px 30px rgba(29,53,87,0.06);max-width:640px;margin:18px auto}
+.input{width:100%;padding:10px 12px;margin:8px 0;border:1px solid #e6eefb;border-radius:8px}
+
+/* small */
+.small{font-size:.9rem;color:#666}
+
+/* profile list */
+.list-row{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px;border-bottom:1px solid #f0f4fb}
+.delete-btn{background:#ff6b6b;color:white;padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+
+/* responsive */
+@media (max-width:600px){.hero h1{font-size:1.4rem}}
