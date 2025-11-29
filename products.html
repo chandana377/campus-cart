@@ -1,22 +1,37 @@
-<div id="productList" class="product-grid"></div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Products — CAMPUS CART</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <img src="images/logo.png" class="logo" alt="logo">
+      <div class="brand">CAMPUS CART</div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="products.html">Buy</a>
+      <a href="sell.html">Sell</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+  </header>
 
-<script type="module">
-import { db } from "./script/firebase.js";
-import { getDocs, collection } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+  <main class="container">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <h2 style="margin:0;color:var(--primary)">All Listings</h2>
+      <div>
+        <input id="searchInput" class="input" placeholder="Search items..." style="max-width:260px">
+        <a href="sell.html" class="btn" style="margin-left:10px">Sell</a>
+      </div>
+    </div>
 
-const container = document.getElementById("productList");
+    <div id="productList" class="product-grid"></div>
+  </main>
 
-const snap = await getDocs(collection(db, "products"));
-snap.forEach(doc => {
-   let item = doc.data();
-
-   container.innerHTML += `
-     <div class="card">
-        <img src="${item.image}">
-        <h3>${item.name}</h3>
-        <p>$${item.price}</p>
-        <button class="buy-btn">View</button>
-     </div>
-   `;
-});
-</script>
+  <script type="module" src="products.js"></script>
+</body>
+</html>
