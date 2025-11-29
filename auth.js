@@ -1,20 +1,44 @@
-// Firebase authentication example
-import { signInWithEmailAndPassword } from "firebase/auth";
+// auth.js
+import { auth } from "./firebase.js";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 
-const loginForm = document.getElementById("loginForm");
+// Sign up
+const signupBtn = document.getElementById("signupBtn");
+if(signupBtn){
+  signupBtn.addEventListener("click", async ()=>{
+    const email = document.getElementById("regEmail").value;
+    const pass = document.getElementById("regPassword").value;
+    try{
+      await createUserWithEmailAndPassword(auth, email, pass);
+      alert("Account created — redirecting to profile.");
+      window.location.href = "profile.html";
+    }catch(err){ alert(err.message); }
+  });
+}
 
-loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+// Sign in
+const signinBtn = document.getElementById("signinBtn");
+if(signinBtn){
+  signinBtn.addEventListener("click", async ()=>{
+    const email = document.getElementById("loginEmail").value;
+    const pass = document.getElementById("loginPassword").value;
+    try{
+      await signInWithEmailAndPassword(auth, email, pass);
+      window.location.href = "profile.html";
+    }catch(err){ alert(err.message); }
+  });
+}
 
-    const email = loginForm.email.value;
-    const password = loginForm.password.value;
+// Expose onAuthState callback
+export function onAuthState(callback){
+  onAuthStateChanged(auth, callback);
+}
 
-    signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-        alert("Login Successful!");
-        window.location.href = "profile.html";
-    })
-    .catch((error) => {
-        alert("Error: " + error.message);
-    });
-});
+export async function signOutUser(){
+  await signOut(auth);
+}
