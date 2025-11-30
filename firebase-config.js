@@ -1,9 +1,12 @@
-// Import the functions you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+// Firebase SDK (Modular) - Compatible with GitHub Pages
 
-// Your Firebase config (paste your personal values)
+// Load Firebase SDKs from CDN
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getStorage } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+// Your Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCHejhJGn5FG-Cq0towJkhyv2BduzPjIAQ",
   authDomain: "campus-cart-943c1.firebaseapp.com",
@@ -18,3 +21,4 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const storage = getStorage(app);
