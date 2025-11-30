@@ -5,12 +5,13 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebas
 
 // Your Firebase config (paste your personal values)
 const firebaseConfig = {
-  apiKey: "XXXX",
-  authDomain: "XXXX",
-  projectId: "XXXX",
-  storageBucket: "XXXX",
-  messagingSenderId: "XXXX",
-  appId: "XXXX"
+  apiKey: "AIzaSyCHejhJGn5FG-Cq0towJkhyv2BduzPjIAQ",
+  authDomain: "campus-cart-943c1.firebaseapp.com",
+  projectId: "campus-cart-943c1",
+  storageBucket: "campus-cart-943c1.firebasestorage.app",
+  messagingSenderId: "276374239028",
+  appId: "1:276374239028:web:92c76d2b0158d07a6c1761",
+  measurementId: "G-LCSRTW0SC0"
 };
 
 // Initialize Firebase
